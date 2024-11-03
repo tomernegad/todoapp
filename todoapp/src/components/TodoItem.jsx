@@ -1,13 +1,17 @@
 import styles from "./todoItem.module.css";
-export default function TodoItem({ item }) {
-  function handleDelete() {
-    console.log("Delete activated");
+export default function TodoItem({ item, todos, setTodos }) {
+  function handleDelete(item) {
+    console.log("Delete activated for item", item);
+    setTodos(todos.filter((todo) => todo !== item));
   }
   return (
     <div className={styles.item}>
       <div className={styles.itemName}>
         {item}{" "}
-        <button onClick={handleDelete} className={styles.deleteButton}>
+        <button
+          onClick={() => handleDelete(item)}
+          className={styles.deleteButton}
+        >
           x
         </button>
       </div>
